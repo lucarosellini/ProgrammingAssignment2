@@ -1,8 +1,3 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
-
 ## As in the provided example, makeCacheMatrix wraps the
 ## provided matrix 'x' using a special list that exposes
 ## four methods:
@@ -41,29 +36,33 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
 ## the following function contains the logic needed to calculate and to cache
 ## the inverse of the matrix wrapped using the function above.
 ##
+## Return a matrix that is the inverse of 'x'
 cacheSolve <- function(x, ...) {
-    ## Return a matrix that is the inverse of 'x'
     
+    ## get the cached inverse
     inv <- x$getinverse()
     
+    ## checks if the inverse has already been calculated. 
+    ## If yes, return the cached inverse. 
     if (!is.null(inv)){
         message("Returning the cached inverse matrix")
         return(inv)
     }
     
-    ## No cached inverse has been found, let's calc the inverse
+    ## No cached inverse has been found, let's calculate the inverse
     
-    # getting the matrix for which we need to calc the inverse
+    # getting the matrix for which we need to calculate the inverse
     m <- x$get()
     
     # calc the inverse propagating any additional parameter the user may have provided
     inv <- solve(m, ...)
+    
+    # cache the computed inverse
     x$setinverse(inv)
     
+    # return the computed inverse
     inv
 }
